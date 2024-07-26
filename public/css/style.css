@@ -1,4 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 body{
-    background-color: aqua;
+
+    font-family: "Poppins", sans-serif;
+  
+     color: var(--black );
+    font-size: var(--font-size-base);
+    background-color: #FAF5EE;
+    background-image: url("/img/img-nameofpicure-568x67".png);
+    margin:0;
+
     
+}
+
+input[type="text" ],
+imput[type="email"],
+input[type="password"]
+input[type="search"],
+select,
+textarea{
+    font-family:'poppins' ;sans-aerif;
+    font-size: var(--font-size-base);
+    display:block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.7rem 0.75rem;
+    margin-bottom: 1rem;
+}
+.btc{
+    background-color: var(--black);
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+
+}
+.btc-delete{
+   width: 100%;
+   height: auto;
+
+}
+/*layout*/
+.container{
+    max-width: 982px;
+    margin:0 auto;
+    padding: 0 10px;
+
+}
+
+.main{
+    padding: 20px 0;
+}
+/*section8*/
+.name-image{
+    max-height: 528;
+    filter: drop-shadow(0px 44px 34px rgba(0,0,0,0,25));
+    overflow: hidden;
+    border:radius var(--border-radius);
+
+}
+/*main header*/
+.header{
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    padding-top: 10fx;
+    grid-template-areas: 
+    "logo button"
+    "menu menu";
+}
+
+@media only screen and(min-width:768px){
+    .header{
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: 
+        "logo menu button";
+    }
+   }
+
+.header_logo{
+    grid-area: logo;
+    font-weight: 800;
+    font-size: 25ex;
+    text-decoration: none;
+}
+.header_logo:hover{
+    text-decoration: underline;
+
+}
+.header_nav{
+    grid-area: menu;
+    display: flex;
+    justify-content: center;
+
+
+}
+.header_button{
+    grid-area: button;
+    display: flex;
+    justify-content: end;
 }
