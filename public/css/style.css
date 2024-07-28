@@ -8,26 +8,11 @@ body{
      color: var(--black );
     font-size: var(--font-size-base);
     background-color: #FAF5EE;
-    background-image: url("/img/img-nameofpicure-568x67".png);
+    background-image: url("/img/img-nameofpicure-568x67.png");
     margin:0;
 
-    
 }
 
-input[type="text" ],
-imput[type="email"],
-input[type="password"]
-input[type="search"],
-select,
-textarea{
-    font-family:'poppins' ;sans-aerif;
-    font-size: var(--font-size-base);
-    display:block;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0.7rem 0.75rem;
-    margin-bottom: 1rem;
-}
 .btc{
     background-color: var(--black);
     border: none;
@@ -104,3 +89,42 @@ textarea{
     display: flex;
     justify-content: end;
 }
+.header_button button{
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+    border: 0;
+    padding: 6px 12px;
+    background: none;
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color:var(--black);
+
+}
+.header_button button:hover{
+    border: 2px solid var(--black);
+
+}
+/*header->navigation*/
+.header_nav ul{
+    list-style-type: none;
+    display: flex;
+    gap: 1rem;
+    font-weight: 600;
+    padding: 0;
+
+}
+.header_nav ul a{
+    padding: 10px;
+    text-decoration: none;
+
+}
+.header_nav ul a:hover{
+    text-decoration: underline;
+
+}
+.header_nav ul a.active{
+    color: var(--gray);
+ }
