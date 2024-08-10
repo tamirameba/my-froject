@@ -1,130 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+body {
+  font-family: "popins", sans-serif;
 
-body{
-
-    font-family: "Poppins", sans-serif;
-  
-     color: var(--black );
-    font-size: var(--font-size-base);
-    background-color: #FAF5EE;
-    background-image: url("/img/img-nameofpicure-568x67.png");
-    margin:0;
-
+  background-color: hwb(214 16% 63%);
 }
 
-.btc{
-    background-color: var(--black);
-    border: none;
-    color: white;
-    padding: 16px 32px;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
-
-}
-.btc-delete{
-   width: 100%;
-   height: auto;
-
-}
-/*layout*/
-.container{
-    max-width: 982px;
-    margin:0 auto;
-    padding: 0 10px;
-
+li {
+  list-style-type: none;
 }
 
-.main{
-    padding: 20px 0;
+input,
+textarea {
+  padding: 5px 15px;
+  border-radius: 20px;
+  outline: 0;
 }
-/*section8*/
-.name-image{
-    max-height: 528;
-    filter: drop-shadow(0px 44px 34px rgba(0,0,0,0,25));
-    overflow: hidden;
-    border:radius var(--border-radius);
+.heading {
+  font-family: "Montserrat", sans-serif;
+  font-size: 56px;
+  font-weight: bold;
+  color: transparent;
+  background: linear-gradient(to right, #f05f40, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3),
+    -2px -2px 4px rgba(255, 255, 255, 0.3);
+  animation: fadeInUp 1s ease-in-out;
+  letter-spacing: 3px;
+  position: relative;
+}
 
-}
-/*main header*/
-.header{
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-    padding-top: 10fx;
-    grid-template-areas: 
-    "logo button"
-    "menu menu";
+.my-heading::before,
+.my-heading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 3px;
+  width: 30%;
+  background: #f05f40;
 }
 
-@media only screen and(min-width:768px){
-    .header{
-        grid-template-columns: auto 1fr auto;
-        grid-template-areas: 
-        "logo menu button";
+.my-heading::before {
+  left: 0;
+}
+
+.my-heading::after {
+  right: 0;
+}
+
+.container {
+  text-align: center;
+}
+.frame {
+  width: 500px;
+  height: 500px;
+  border: 2px solid #73ad21;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  display: inline-block;
+}
+
+.login-button,
+.register-button {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow: hidden;
+  transition: 0.5s;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.login-button::before,
+.register-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #fa9804, #f16d75);
+  border-radius: 5px;
+  z-index: -1;
+  transition: all 0.5s ease-in-out;
+}
+
+.login-button:hover::before,
+.register-button:hover::before {
+  transform: scaleX(0);
+}
+
+.pagination:hover {
+  background-color: red;
+  ackground-color: #701136;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin: 5px 2px;
+  cursor: pointer;
+}
+
+.articles_heading {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
+.header_nav {
+  display: flexbox;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 10px;
+}
+
+.header_nav {
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+  font-weight: 600;
+  padding: 0;
+}
+.header_nav {
+  padding: 10px;
+  text-decoration: none;
+}
+.header_nav ul a:hover {
+  text-decoration: underline;
+}
+.header_nav ul a.active {
+  color: var(--gray);
+}
+
+.likebutton {
+  background-color: #f2f2f2;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.dislikeButton {
+  background-color: white;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  text-align: right;
+
+  .status {
+    width: 300px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+
+    .statusDate {
+      font-size: 10px;
     }
-   }
+  }
 
-.header_logo{
-    grid-area: logo;
-    font-weight: 800;
-    font-size: 25ex;
-    text-decoration: none;
-}
-.header_logo:hover{
-    text-decoration: underline;
-
-}
-.header_nav{
-    grid-area: menu;
+  .comments {
+    margin-top: 15px;
     display: flex;
-    justify-content: center;
-
-
+    flex-direction: column;
+    gap: 5px;
+    .comment {
+      background-color: #add8fd;
+      padding: 5px 10px;
+      border-radius: 15px;
+    }
+  }
 }
-.header_button{
-    grid-area: button;
-    display: flex;
-    justify-content: end;
-}
-.header_button button{
-    display: flex;
-    gap: 0.3rem;
-    align-items: center;
-    border: 0;
-    padding: 6px 12px;
-    background: none;
-    border-radius: var(--border-radius);
-    border: 2px solid transparent;
-    font-size: var(--font-size-base);
-    font-weight: 600;
-    color:var(--black);
-
-}
-.header_button button:hover{
-    border: 2px solid var(--black);
-
-}
-/*header->navigation*/
-.header_nav ul{
-    list-style-type: none;
-    display: flex;
-    gap: 1rem;
-    font-weight: 600;
-    padding: 0;
-
-}
-.header_nav ul a{
-    padding: 10px;
-    text-decoration: none;
-
-}
-.header_nav ul a:hover{
-    text-decoration: underline;
-
-}
-.header_nav ul a.active{
-    color: var(--gray);
- }

@@ -1,19 +1,85 @@
-<div class="author">
-    <a href="/login">Login</a>
-    <a href="/register">Register</a>
-</div>
- 
-<img src="/img/hrto-image.webp" alt="looking out through window "class="hero-image"width="981"height="528">
-<selection class="articles">
-    <h2 class="articles_heading">latest posts  </h2>
-    <ul class="=artical-ul">
-        <li>
-            <a href="#">
-                <span>post Title </span>
-                <span class="artical-list_date ">date</span>
+<html>
+  <title>blog</title>
+  <link rel="stylesheet" href="style.css" />
 
-            </a>
-        </li>
-    </ul>
-    <a href="#"class="pagination">&it;view older postss </a>
-</selection>
+  <body>
+    <header class="header">
+      <nav class="header_nav">
+        <ul>
+          <li>
+            <a href="/home" class="">home</a>
+          </li>
+          <li>
+            <a href="/about" class="">about</a>
+          </li>
+          <li>
+            <a href="/contact" class="">contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <label for="search">search:</label>
+      <input type="text" id="search" name="search" placeholder=" search" />
+      <button class="searchBth" type="submit" aria-label="search">
+        <span class="icon"></span>
+        search
+      </button>
+    </header>
+
+    <h1 class="heading">BLOG</h1>
+
+    <div class="container">
+      <div class="frame">
+        <button class="login-button"><a href="/login ">Sign in</a></button>
+        <button class="register-button">
+          <a href="/register">Register</a>
+        </button>
+      </div>
+
+      <script src="script.js"></script>
+
+      <section class="articles">
+        <h2 class="articles_heading">latest posts</h2>
+
+        <% if(isLoggedIn) { %>
+        <form action="/api/status" method="post">
+          <textarea type="text" name="status" id="status"></textarea>
+          <button type="submit">Submit</button>
+        </form>
+        <% } %>
+
+        <ul class="posts">
+          <% for(let i = 0; i < posts.length; i++) { %>
+          <div id="<%= posts[i]._id %>" class="status">
+            <div class="statusUser">
+              <%= posts[i].userId.fullName %> :
+              <span class="statusDate"
+                ><%= posts[i].createdAt.toLocaleString('en-GB') %></span
+              >
+            </div>
+            <div class="statusText"><%= posts[i].status %></div>
+            <div class="statusText"></div>
+            <% if(isLoggedIn) { %>
+            <button class="like">like ( <%= posts[i].likes.length %>)</button>
+            <button class="dislike">dislike</button>
+            <form
+              action="/api/status/<%= posts[i]._id %>/comment"
+              method="post"
+            >
+              <input type="text" name="comment" id="comment" />
+              <button type="submit">Comment</button>
+            </form>
+            <% } %>
+            <hr />
+            <div class="comments">
+              <% posts[i].comments.forEach(comment => { %>
+              <li class="comment"><%= comment.text %></li>
+              <% }); %>
+            </div>
+          </div>
+          <% } %>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
