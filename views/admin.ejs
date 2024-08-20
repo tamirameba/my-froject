@@ -1,0 +1,22 @@
+<html>
+  <title>blog</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <body>
+    <h1 class="heading">BLOG</h1>
+
+    <div class="container">
+      <section class="articles">
+        <h2 class="articles_heading">Users</h2>
+
+        <% for(const user of users) { %>
+        <div>
+          <%= user.email %>
+          <button onclick="deleteUser('<%= user._id %>')">Delete</button>
+        </div>
+        <% } %>
+      </section>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>

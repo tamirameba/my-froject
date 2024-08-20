@@ -140,6 +140,7 @@ nav {
   justify-content: center;
   background-color: white;
   padding: 10px;
+  z-index: 100;
 }
 
 .header_nav {

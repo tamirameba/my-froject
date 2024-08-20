@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <title><  % local.title %></title> -->
     <!-- <meta name="description"content="<   % locals.description %>"> -->
-    <link rel="stylesheet"href="/css/style.css">
-    <script type="text/javascript"defer src="/js/script.js"></script>
-
-</head>
-<body>
-  
+    <link rel="stylesheet" href="/css/style.css" />
+    <script type="text/javascript" defer src="/js/script.js"></script>
+  </head>
+  <body>
     <div class="conteiner">
-    <main class="main">
-        <%- body %>
-    </main>
+      <nav class="header_nav">
+        <ul>
+          <li><a href="/" class="">home</a></li>
+          <li><a href="/about" class="">about</a></li>
+          <li><a href="/contact" class="">contact</a></li>
+          <% if(locals?.isAdmin) { %> 
+            <li><a href="/admin" class="">admin</a></li>
+          <% } %>
+        </ul>
+      </nav>
+
+
+        <main class="main"><%- body %></main>
     </div>
-</body>
+
 </html>

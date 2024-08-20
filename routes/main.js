@@ -1,9 +1,8 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const router = express.Router();
-const UserModel = require("../models/user");
-const { PostModel } = require("../models/post");
-const { JSDOM } = require("jsdom");
+const UserModel = require("../server/models/user");
+const { PostModel } = require("../server/models/post");
 
 async function hashPassword(password) {
   const salt = await bcrypt.genSalt();
@@ -24,6 +23,7 @@ router.get("/", async (req, res) => {
     name: req.session?.user?.fullName ?? "",
     posts,
     isLoggedIn,
+    isAdmin: isAdmin(req),
   });
 });
 
@@ -37,6 +37,16 @@ router.get("/users", (req, res) => {
 
 router.get("/about", (req, res) => {
   res.render("about.ejs");
+});
+
+router.get("/admin", async (req, res) => {
+  if (!isAdmin(req)) {
+    return res.redirect("/");
+  }
+  const users = await UserModel.find();
+  res.render("admin.ejs", {
+    users,
+  });
 });
 
 router.get("/register", (req, res) => {
@@ -54,7 +64,18 @@ router.post("/api/register", async (req, res) => {
   const user = new UserModel({ ...req.body, password: hashedPassword });
   await user.save();
 
-  res.redirect("/login ");
+  res.redirect("/login");
+});
+
+router.delete("/api/users/:userId", async (req, res) => {
+  const { userId } = req.params;
+  await UserModel.findByIdAndDelete(userId);
+  res.sendStatus(200);
+});
+router.delete("/api/posts/:postId", async (req, res) => {
+  const { postId } = req.params;
+  await PostModel.findByIdAndDelete(postId);
+  res.sendStatus(200);
 });
 
 router.post("/api/login", async (req, res) => {
@@ -115,3 +136,7 @@ router.post("/api/status/:statusId/likes", async (req, res) => {
 });
 
 module.exports = router;
+
+function isAdmin(req) {
+  return process.env.ADMIN === req.session?.user?.email;
+}

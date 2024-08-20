@@ -17,3 +17,25 @@ document.querySelectorAll(".like, .dislike").forEach((el) => {
     });
   });
 });
+
+async function deleteUser(userId) {
+  const url = `/api/users/${userId}`;
+  const response = await fetch(url, {
+    method: "delete",
+  });
+
+  if (response.status === 200) {
+    window.location.reload();
+  }
+}
+
+async function deletePost(postId) {
+  const url = `/api/posts/${postId}`;
+  const response = await fetch(url, {
+    method: "delete",
+  });
+
+  if (response.status === 200) {
+    window.location.reload();
+  }
+}
