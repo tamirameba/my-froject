@@ -3,24 +3,44 @@
   <link rel="stylesheet" href="style.css" />
 
   <body>
+    <% if(isLoggedIn) { %>
+      <form class="searchForm">
+        <input
+          type="text"
+          name="status"
+          id="status"
+          placeholder="Search"
+        ></textarea>
+        <button type="submit">Search</button>
+      </form>
+      <% } %>
     <h1 class="heading">BLOG</h1>
 
     <div class="container">
       <div class="frame">
+        <% if(!isLoggedIn) { %>
         <button class="login-button"><a href="/login ">Sign in</a></button>
         <button class="register-button">
           <a href="/register">Register</a>
         </button>
+        <% } %> <% if(isLoggedIn) { %>
+        <button class="login-button"><a href="/logout ">Sign Out</a></button>
+        <% } %>
       </div>
 
       <script src="script.js"></script>
-
+      
       <section class="articles">
         <h2 class="articles_heading">latest posts</h2>
 
         <% if(isLoggedIn) { %>
         <form action="/api/status" method="post">
-          <textarea type="text" name="status" id="status"></textarea>
+          <textarea
+            type="text"
+            name="status"
+            id="status"
+            placeholder="Write a new status"
+          ></textarea>
           <button type="submit">Submit</button>
         </form>
         <% } %>
@@ -40,7 +60,7 @@
               >
             </div>
             <div class="statusText"><%= posts[i].status %></div>
-            <div class="statusText"></div>
+          
             <% if(isLoggedIn) { %>
             <button class="like">like ( <%= posts[i].likes.length %>)</button>
             <button class="dislike">dislike</button>
@@ -48,7 +68,12 @@
               action="/api/status/<%= posts[i]._id %>/comment"
               method="post"
             >
-              <input type="text" name="comment" id="comment" />
+              <input
+                type="text"
+                name="comment"
+                id="comment"
+                placeholder="Add comment"
+              />
               <button type="submit">Comment</button>
             </form>
             <% } %>

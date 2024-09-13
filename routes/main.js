@@ -27,6 +27,11 @@ router.get("/", async (req, res) => {
   });
 });
 
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
+});
+
 router.get("/users", (req, res) => {
   const locals = {
     title: "blog",
@@ -52,6 +57,9 @@ router.get("/admin", async (req, res) => {
 router.get("/register", (req, res) => {
   res.render("register.ejs");
 });
+router.get("/forgot", (req, res) => {
+  res.render("forgot.ejs");
+});
 
 router.get("/login", (req, res) => {
   res.render("login.ejs");
@@ -63,6 +71,24 @@ router.post("/api/register", async (req, res) => {
   console.log({ hashedPassword });
   const user = new UserModel({ ...req.body, password: hashedPassword });
   await user.save();
+
+  res.redirect("/login");
+});
+
+router.post("/api/forgot", async (req, res) => {
+  console.log(req.body);
+  const hashedPassword = await hashPassword(req.body.password);
+  const updatedUser = await UserModel.findOneAndUpdate(
+    { email: req.body.email },
+    { password: hashedPassword },
+    {
+      new: true,
+    }
+  );
+  if (!updatedUser) {
+    const message = encodeURIComponent("Invalid email");
+    return res.redirect("/forgot?message=" + message);
+  }
 
   res.redirect("/login");
 });
@@ -123,6 +149,7 @@ router.post("/api/status/:statusId/likes", async (req, res) => {
   const { action } = req.body;
   const userId = req.session.user._id;
 
+  console.log({ post, action, userId });
   if (action === "like") {
     if (post.likes.includes(userId)) {
       post.likes = post.likes.filter((u) => u !== userId);

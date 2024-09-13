@@ -56,7 +56,6 @@ textarea {
 }
 .frame {
   width: 500px;
-  height: 500px;
   border: 2px solid #73ad21;
   border-radius: 10px;
   background-color: #f2f2f2;
@@ -99,9 +98,12 @@ textarea {
   transform: scaleX(0);
 }
 
+main {
+  color: white;
+}
+
 .pagination:hover {
   background-color: red;
-  ackground-color: #701136;
   color: white;
   padding: 15px 32px;
   text-align: center;
@@ -120,9 +122,6 @@ textarea {
 }
 
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
   background-color: #f2f2f2;
   padding: 10px;
 }
@@ -154,6 +153,10 @@ nav {
   padding: 10px;
   text-decoration: none;
 }
+.header_nav ul {
+  display: flex;
+  gap: 10px;
+}
 .header_nav ul a:hover {
   text-decoration: underline;
 }
@@ -176,6 +179,10 @@ nav {
   background-color: white;
 }
 
+.searchForm {
+  width: 100%;
+}
+
 .posts {
   display: flex;
   flex-direction: column;
@@ -183,6 +190,7 @@ nav {
   align-items: center;
   gap: 15px;
   text-align: right;
+  color: black;
 
   .status {
     width: 300px;

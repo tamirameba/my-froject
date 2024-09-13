@@ -13,6 +13,7 @@ const port = 5000;
 connectDB();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static("public"));
 
 app.set("trust proxy", 1); // trust first proxy

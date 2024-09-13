@@ -13,6 +13,9 @@ document.querySelectorAll(".like, .dislike").forEach((el) => {
 
     fetch(`/api/status/${postId}/likes`, {
       body: JSON.stringify({ action }),
+      headers: {
+        "Content-Type": "application/json",
+      },
       method: "post",
     });
   });
@@ -39,3 +42,18 @@ async function deletePost(postId) {
     window.location.reload();
   }
 }
+
+document
+  .querySelector("form.searchForm")
+  ?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const searchTerm = document.querySelector("form.searchForm input").value;
+
+    document.querySelectorAll(".status .statusText").forEach((element) => {
+      if (element.textContent.includes(searchTerm)) {
+        return (element.closest(".status").style.display = "block");
+      }
+
+      element.closest(".status").style.display = "none";
+    });
+  });
